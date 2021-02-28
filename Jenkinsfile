@@ -8,6 +8,8 @@ pipeline {
     environment {
         HOME= '.'
         CI = 'true'
+        registry = "rozmo34/node-rest-api"
+        registryCredential = '35ebaace-4437-495a-b2b6-8872c0549d1a'
     }
     stages {
         stage('Build') {
