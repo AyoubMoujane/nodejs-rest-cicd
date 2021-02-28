@@ -20,5 +20,16 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Build docker image') {
+            steps {
+                sh 'docker build -t node-img .'
+            }
+        }
+        stage('Push docker image') {
+            steps {
+                sh 'docker tag node-img rozmo34/nodejs-rest-api'
+                sh 'docker push rozmo34/nodejs-rest-api'
+            }
+        }
     }
 }
