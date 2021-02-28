@@ -21,15 +21,17 @@ pipeline {
             }
         }
         stage('Build docker image') {
-            steps {
-                sh 'docker build -t node-img .'
+            steps{
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }
-        stage('Push docker image') {
-            steps {
-                sh 'docker tag node-img rozmo34/nodejs-rest-api'
-                sh 'docker push rozmo34/nodejs-rest-api'
-            }
-        }
+        // stage('Push docker image') {
+        //     steps {
+        //         sh 'docker tag node-img rozmo34/nodejs-rest-api'
+        //         sh 'docker push rozmo34/nodejs-rest-api'
+        //     }
+        // }
     }
 }
